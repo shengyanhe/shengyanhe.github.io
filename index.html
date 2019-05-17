@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Swiper的切换</title>
+    <link rel="stylesheet" href="css/swiper.min.css">
+    <link rel="stylesheet" href="css/certify.css">
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script src="js/swiper.min.js"></script>
+    <style type="text/css">
+		header{
+			width: 100%
+			height:300px;
+			background-color: #ddd;
+			margin-bottom: 50px;
+		}
+/*		ul{
+			list-style: none;
+		}*/
+    </style>
+
+</head>
+<body>
+<header>hahhahahhaab<br>hahhahahhaab<br>hahahhahah</header>
+<ul id="item" list-style=none>
+<li>haha</li>
+<li>hahha</li>
+<li>hahha</li>
+<li>hahha</li>
+<li>hahha</li>
+<li>hahha</li>
+</ul>
+
+
+
+
+<!-- 轮播图部分开始 -->
+<div id="certify">
+<div class="swiper-container">
+<div class="swiper-wrapper">
+<div class="swiper-slide"><img src="images/certify01.png" /><p>非常难得又值钱的认证证书</p></div>
+<div class="swiper-slide"><img src="images/certify02.png" /><p>深圳市优秀互联网企业认定证书</p></div>
+<div class="swiper-slide"><img src="images/certify03.png" /><p>质量管理体系认证荣誉证书</p></div>
+<div class="swiper-slide"><img src="images/certify04.png" /><p>计算机软件著作权登记证书</p></div>
+<div class="swiper-slide"><img src="images/certify05.png" /><p>增值电信业务经营许可证</p></div>
+</div>
+</div>
+<div class="swiper-pagination"></div>
+<div class="swiper-button-prev"></div>
+<div class="swiper-button-next"></div>
+</div>
+<!-- 轮播图部分结束 -->
+
+<p>点击事件</p>
+<button id="btn">点我</button>
+<p id="text"></p>
+<!-- <script type="text/javascript">
+	document.getElementById('btn').onclick=function(){
+		document.getElementById('text').innerHTML=Date();
+	};
+</script>
+ -->
+
+<script type="text/javascript">
+function inner(num1,num2) {
+	console.log(arguments);
+}
+inner(10,5);
+</script>
+
+
+<a href="tencent://message/?uin=852723370&Menu=yes" class="qq">联系我</a>
+
+<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=852723370&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:852723370:52" alt="点击这里给我发消息" title="点击这里给我发消息"/></a>
+
+
+<script type="text/javascript">
+var uls=document.getElementById('item');
+var lis=uls.getElementsByTagName('li');
+for (var i = 0; i < lis.length; i++) {
+	if (i==0) {
+		lis[i].style.backgroundColor="red";
+	}else if (i==1) {
+		lis[i].style.backgroundColor="blue";
+	}else {
+		lis[i].style.backgroundColor="yellow";
+	}
+}
+</script>
+
+
+
+
+<footer>hahahhaha</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 轮播图部分开始 -->
+<script>
+certifySwiper = new Swiper('#certify .swiper-container', {
+	watchSlidesProgress: true,
+	slidesPerView: 'auto',
+	centeredSlides: true,
+	loop: true,
+	loopedSlides: 5,
+	autoplay: true,
+	navigation: {
+		nextEl: '.swiper-button-next',
+		prevEl: '.swiper-button-prev',
+	},
+	pagination: {
+		el: '.swiper-pagination',
+		//clickable :true,
+	},
+	on: {
+		progress: function(progress) {
+			for (i = 0; i < this.slides.length; i++) {
+				var slide = this.slides.eq(i);
+				var slideProgress = this.slides[i].progress;
+				modify = 1;
+				if (Math.abs(slideProgress) > 1) {
+					modify = (Math.abs(slideProgress) - 1) * 0.3 + 1;
+				}
+				translate = slideProgress * modify * 260 + 'px';
+				scale = 1 - Math.abs(slideProgress) / 5;
+				zIndex = 999 - Math.abs(Math.round(10 * slideProgress));
+				slide.transform('translateX(' + translate + ') scale(' + scale + ')');
+				slide.css('zIndex', zIndex);
+				slide.css('opacity', 1);
+				if (Math.abs(slideProgress) > 3) {
+					slide.css('opacity', 0);
+				}
+			}
+		},
+		setTransition: function(transition) {
+			for (var i = 0; i < this.slides.length; i++) {
+				var slide = this.slides.eq(i)
+				slide.transition(transition);
+			}
+
+		}
+	}
+
+})
+</script>
+<!-- 轮播图部分结束 -->
+
+
+
+</body>
+</html>
